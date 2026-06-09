@@ -9,7 +9,7 @@ remembers your corrections.
 The public page is <https://errorta.app>.
 
 Installer builds and supporting artifacts are published on the
-[GitHub Releases page](https://github.com/wiggins-j/%65rrorta%2Ddownloads/releases).
+[GitHub Releases page](https://github.com/wiggins-j/errorta-downloads/releases).
 Release notes include SHA-256 checksums for files that should be
 verified after download.
 
