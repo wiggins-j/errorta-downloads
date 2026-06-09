@@ -1,0 +1,217 @@
+/* Errorta downloads landing - brand purple, dark/light aware. */
+
+:root {
+  --brand: #6f7df2;
+  --brand-deep: #4f5fd9;
+  --bg: #ffffff;
+  --bg-soft: #f5f6fb;
+  --fg: #16181f;
+  --fg-soft: #4a4f5c;
+  --border: #e4e6ef;
+  --card-bg: #ffffff;
+  --shadow: 0 1px 2px rgba(20, 22, 30, 0.04),
+    0 8px 24px rgba(20, 22, 30, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d0f17;
+    --bg-soft: #141826;
+    --fg: #eef0fa;
+    --fg-soft: #a4abc2;
+    --border: #232838;
+    --card-bg: #161a28;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4),
+      0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.55;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Hero */
+.hero {
+  background: var(--bg);
+  color: var(--fg);
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.hero-logo {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+  /* Pixel-art wordmark — preserve sharp edges across zoom levels.
+   * Modern values first, older keyword last for broader support. */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+.hero .tagline {
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem;
+  font-weight: 500;
+  color: var(--fg);
+}
+.hero .sub {
+  font-size: 1rem;
+  color: var(--fg-soft);
+  margin: 0 0 2.5rem;
+}
+.hero .sub a {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.cta-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.cta:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.cta.primary {
+  background: var(--brand);
+  color: white;
+  box-shadow: 0 4px 12px rgba(111, 125, 242, 0.3);
+}
+.cta.primary:hover {
+  background: var(--brand-deep);
+}
+.cta.secondary {
+  background: transparent;
+  color: var(--brand);
+  border: 1.5px solid var(--brand);
+}
+.cta.secondary:hover {
+  background: var(--bg-soft);
+}
+
+/* Sections */
+section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+section h1,
+section h2 {
+  font-size: 2rem;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.demo-placeholder {
+  background: var(--bg-soft);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 5rem 1rem;
+  text-align: center;
+  color: var(--fg-soft);
+}
+
+/* Downloads */
+.downloads-note {
+  color: var(--fg-soft);
+  margin: 0 0 2rem;
+}
+.download-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.download-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
+}
+.download-card h3 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+.download-card .cta {
+  width: 100%;
+  text-align: center;
+  background: var(--brand);
+  color: white;
+}
+.download-card .cta:hover {
+  background: var(--brand-deep);
+}
+.download-card .meta {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--fg-soft);
+}
+
+/* Notes */
+.notes p {
+  color: var(--fg-soft);
+  max-width: 65ch;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--fg-soft);
+  font-size: 0.9rem;
+}
+
+/* AIAR brand mark — inline next to every AIAR mention.
+ * Logo is a portrait pixel-art sandwich (832×1248, ratio ≈ 2:3).
+ * Scaled to roughly cap-height × 1.5 of the surrounding text and
+ * rendered pixelated so the chunky aesthetic survives the scale-down. */
+.aiar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  vertical-align: middle;
+}
+.aiar-logo-inline {
+  width: auto;
+  height: 1.6em;        /* tracks the surrounding font-size */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  vertical-align: -0.35em;
+}
