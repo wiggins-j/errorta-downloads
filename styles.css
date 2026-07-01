@@ -303,6 +303,89 @@ footer {
   font-size: 0.9rem;
 }
 
+/* Hero status line — below the CTAs. */
+.hero-status {
+  margin: 1.5rem 0 0;
+  font-size: 0.95rem;
+  color: var(--fg-soft);
+}
+.hero-status .wedge-status {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+/* Model-family chips (the "bring any model" row). */
+.families-label {
+  margin: 2.5rem 0 0.75rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+.family-chips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.family-chips li {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.4rem 0.95rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--fg-soft);
+  box-shadow: var(--shadow);
+}
+
+/* Alpha signup. */
+.signup {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  max-width: none;
+}
+.signup h2,
+.signup .downloads-note,
+.signup .signup-form,
+.signup .signup-hint {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.signup-form {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.signup-input {
+  flex: 1 1 240px;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--card-bg);
+  color: var(--fg);
+  font-size: 1rem;
+}
+.signup-input:focus-visible {
+  outline: 3px solid var(--brand-deep);
+  outline-offset: 1px;
+  border-color: var(--brand);
+}
+.signup-form .cta.primary {
+  flex: 0 0 auto;
+}
+.signup-hint {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--fg-soft);
+}
+.signup-hint a {
+  text-decoration: underline;
+}
+
 /* AIAR brand mark — inline next to every AIAR mention.
  * Logo is a portrait pixel-art sandwich (832×1248, ratio ≈ 2:3).
  * Scaled to roughly cap-height × 1.5 of the surrounding text and

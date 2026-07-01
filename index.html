@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Errorta - the local AI that admits when it is wrong</title>
+    <title>Errorta - the local-first AI harness that ships software</title>
     <meta
       name="description"
-      content="Errorta is a desktop app for local RAG. Built on the open-source AIAR framework."
+      content="Errorta runs a team of coding agents on your machine - mixing CLI subscriptions, local models, and API models under a PM that assigns the cheapest capable model to each task. Deliberate with the Council. Built on the open-source AIAR framework for grounded answers."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -20,87 +20,207 @@
           width="704"
         />
         <p class="tagline">
-          The local AI that admits when it is wrong and remembers your
-          corrections.
+          The local-first AI harness that ships software.
         </p>
         <p class="sub">
-          Private. On your machine. Built on the open-source
+          Assemble a team of coding agents - CLI subscriptions, local models,
+          and API models - led by a PM, working in rooms on your machine to
+          plan, build, review, and test. Built in tandem with the open-source
           <a href="https://github.com/wiggins-j/aiar" class="aiar-link">
             <img src="aiar-logo.png" alt="" class="aiar-logo-inline" />AIAR
-          </a> framework.
+          </a>
+          framework for grounded answers.
         </p>
 
         <div class="cta-row">
-          <a
-            class="cta primary"
-            href="https://github.com/wiggins-j/errorta-downloads/releases"
-            >View releases</a
-          >
-          <a class="cta secondary" href="#downloads">Download status</a>
+          <a class="cta primary" href="#notify">Join the alpha list</a>
+          <a class="cta secondary" href="#harness">How it works</a>
         </div>
+        <p class="hero-status">
+          <span class="wedge-status soon">In development</span>
+          Alpha dropping soon.
+        </p>
       </div>
     </header>
 
     <main>
-      <section id="downloads" class="downloads">
-        <h1>Downloads</h1>
+      <section id="harness" class="wedges">
+        <h2>One workspace. A whole software team.</h2>
         <p class="downloads-note">
-          Installer builds are published on GitHub Releases as they are
-          validated. Each release notes page carries the SHA-256 digest
-          for its downloadable files.
+          Give Errorta a goal. A PM agent breaks it into tasks, assigns each one
+          to a developer, reviewer, or tester, and drives the work through
+          branches, pull requests, review, and real test runs - the way a small
+          engineering team actually ships.
         </p>
 
-        <div class="download-grid">
-          <article class="download-card">
-            <h3>macOS</h3>
-            <p>Signed and notarized tester builds are prepared locally.</p>
-            <a
-              class="cta primary"
-              href="https://github.com/wiggins-j/errorta-downloads/releases"
-              >View macOS releases</a
-            >
+        <div class="wedge-grid">
+          <article class="wedge-card">
+            <h3>PM-guided teams</h3>
+            <p class="wedge-pitch">Plan, build, review, test.</p>
+            <p>
+              A project manager agent decomposes your goal into a task backlog,
+              assigns each task to the right role, re-plans as work lands or
+              stalls, and holds the merge gate. You watch it work and steer at
+              any point.
+            </p>
           </article>
 
-          <article class="download-card">
-            <h3>Linux</h3>
-            <p>AppImage and Debian package builds land after validation.</p>
-            <a
-              class="cta primary"
-              href="https://github.com/wiggins-j/errorta-downloads/releases"
-              >View Linux releases</a
-            >
+          <article class="wedge-card">
+            <h3>Bring any model</h3>
+            <p class="wedge-pitch">Cheapest capable model per task.</p>
+            <p>
+              Mix Claude, Codex, and Cursor CLI subscriptions, local models on
+              Ollama, and Anthropic / OpenAI / Google APIs in one team. The PM
+              picks the smallest model that can do each task and escalates to a
+              stronger one only when it has to.
+            </p>
           </article>
 
-          <article class="download-card">
-            <h3>Windows</h3>
-            <p>Windows installer work is queued behind VM validation.</p>
-            <a
-              class="cta primary"
-              href="https://github.com/wiggins-j/errorta-downloads/releases"
-              >View Windows releases</a
-            >
+          <article class="wedge-card">
+            <h3>Rooms, not chat windows</h3>
+            <p class="wedge-pitch">Configurable, inspectable, local.</p>
+            <p>
+              Every agent works inside a room you configure - which models, what
+              each one is allowed to see, how the work flows. Nothing leaves your
+              machine unless you route it to a model that does.
+            </p>
           </article>
         </div>
+
+        <p class="families-label">Plug in the models you already have:</p>
+        <ul class="family-chips" aria-label="Supported model families">
+          <li>Claude CLI</li>
+          <li>Codex CLI</li>
+          <li>Cursor CLI</li>
+          <li>Local - Qwen &middot; Gemma &middot; Mistral</li>
+          <li>Anthropic API</li>
+          <li>OpenAI API</li>
+          <li>Google API</li>
+        </ul>
       </section>
 
-      <section id="current" class="notes">
-        <h2>Current Public Asset</h2>
+      <section id="council" class="notes">
+        <h2>The Council: many models, one answer.</h2>
         <p>
-          The current release contains the welcome corpus tarball for
-          first-time Errorta users. It is public onboarding copy and is
-          safe to download from the Releases page.
+          Not every question is a coding task. Convene a Council - several models
+          deliberating in a shared room across topologies you choose (parallel
+          answers, round-robin, debate, moderator-led, blind review). Each member
+          sees only what its policy allows, a finalizer or judge resolves the
+          room, and every context hand-off is inspectable down to the byte. It is
+          a second opinion engine that runs entirely on your terms.
+        </p>
+      </section>
+
+      <section id="aiar" class="notes">
+        <h2>Built on AIAR - grounded, and honest about it.</h2>
+        <p>
+          Errorta is built in tandem with
+          <a href="https://github.com/wiggins-j/aiar" class="aiar-link">
+            <img src="aiar-logo.png" alt="" class="aiar-logo-inline" />AIAR</a>,
+          the open-source local-RAG framework that provides retrieval,
+          LLM-as-judge evaluation, and a grounding / correction loop. Point your
+          agents and Council at your own corpus and they answer from your data -
+          with citations, a structured verdict on whether the answer holds up,
+          and corrections that carry forward. Local AI that admits when it is
+          wrong and remembers what you fixed.
+        </p>
+      </section>
+
+      <section id="notify" class="signup">
+        <h2>Alpha is dropping soon.</h2>
+        <p class="downloads-note">
+          Errorta is in active development. There is no public installer yet -
+          leave your email to be notified when the alpha lands and to join the
+          testers list.
+        </p>
+
+        <form
+          id="notify-form"
+          class="signup-form"
+          action="mailto:help@errorta.app"
+          method="post"
+          enctype="text/plain"
+        >
+          <label class="visually-hidden" for="notify-email">Email address</label>
+          <input
+            id="notify-email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder="you@example.com"
+            class="signup-input"
+          />
+          <button type="submit" class="cta primary">Notify me</button>
+        </form>
+        <p id="notify-hint" class="signup-hint">
+          Prefer email? Write to
+          <a href="mailto:help@errorta.app?subject=Errorta%20alpha%20-%20notify%20me%20%2B%20testers%20list"
+            >help@errorta.app</a
+          >.
         </p>
       </section>
     </main>
 
     <footer>
       <p>
-        Errorta is free. Built on the open-source
+        Errorta is free and runs on your machine. Built on the open-source
         <a href="https://github.com/wiggins-j/aiar" class="aiar-link">
           <img src="aiar-logo.png" alt="" class="aiar-logo-inline" />AIAR
         </a>
-        framework (Apache-2.0).
+        framework (Apache-2.0). Questions:
+        <a href="mailto:help@errorta.app">help@errorta.app</a>.
       </p>
     </footer>
+
+    <script>
+      // Zero-backend signup: GitHub Pages is static, so there is no server to
+      // POST to. Until a hosted form endpoint (Formspree / Tally / etc.) is
+      // wired in, capture interest by opening the visitor's mail client with a
+      // pre-filled message to the canonical inbox. Their typed address rides in
+      // the body so it is captured even if their client sends from elsewhere.
+      //
+      // TO WIRE A REAL FORM LATER: set FORM_ENDPOINT to your Formspree/Tally URL
+      // and this handler will POST to it (fetch) instead of using mailto.
+      var FORM_ENDPOINT = ""; // e.g. "https://formspree.io/f/xxxxxxx"
+      var form = document.getElementById("notify-form");
+      var hint = document.getElementById("notify-hint");
+      if (form) {
+        form.addEventListener("submit", function (event) {
+          var email = (document.getElementById("notify-email") || {}).value || "";
+          if (!email) return; // let native validation handle it
+          if (FORM_ENDPOINT) {
+            event.preventDefault();
+            fetch(FORM_ENDPOINT, {
+              method: "POST",
+              headers: { "Content-Type": "application/json", Accept: "application/json" },
+              body: JSON.stringify({ email: email, list: "alpha+testers" }),
+            })
+              .then(function () {
+                form.reset();
+                hint.textContent = "Thanks - you are on the list.";
+              })
+              .catch(function () {
+                hint.textContent =
+                  "Something went wrong. Email help@errorta.app to be added.";
+              });
+            return;
+          }
+          // mailto fallback (no backend configured).
+          event.preventDefault();
+          var subject = "Errorta alpha - notify me + testers list";
+          var body =
+            "Please add me to the Errorta alpha notification and testers list.\n\nEmail: " +
+            email;
+          window.location.href =
+            "mailto:help@errorta.app?subject=" +
+            encodeURIComponent(subject) +
+            "&body=" +
+            encodeURIComponent(body);
+          hint.textContent =
+            "Opening your email app - send the message to finish signing up.";
+        });
+      }
+    </script>
   </body>
 </html>
