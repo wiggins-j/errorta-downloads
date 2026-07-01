@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Errorta - the local-first AI harness that ships software</title>
+    <title>Errorta - the AI harness that ships software, local and cloud</title>
     <meta
       name="description"
-      content="Errorta runs a team of coding agents on your machine - mixing CLI subscriptions, local models, and API models under a PM that assigns the cheapest capable model to each task. Deliberate with the Council. Built on the open-source AIAR framework for grounded answers."
+      content="Errorta is a desktop AI harness that combines local and cloud models into one team. A PM agent assigns the cheapest capable model to each task to plan, build, review, and test software. Deliberate with the Council, ground answers on your own corpus with AIAR, and choose where your data and compute live - your laptop, your server, or the cloud."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -22,12 +22,13 @@
         />
         <h1 class="wordmark">Errorta</h1>
         <p class="tagline">
-          The local-first AI harness that ships software.
+          The AI harness that ships software - local, cloud, or both.
         </p>
         <p class="sub">
-          Assemble a team of coding agents - CLI subscriptions, local models,
-          and API models - led by a PM, working in rooms on your machine to
-          plan, build, review, and test. Built in tandem with the open-source
+          Errorta combines local models and cloud models into one team. A PM
+          agent leads coding agents - CLI subscriptions, local models on Ollama,
+          and provider APIs - through rooms on your desktop to plan, build,
+          review, and test. Built in tandem with the open-source
           <a href="https://github.com/wiggins-j/aiar" class="aiar-link">
             <img src="aiar-logo.png" alt="" class="aiar-logo-inline" />AIAR
           </a>
@@ -68,23 +69,25 @@
           </article>
 
           <article class="wedge-card">
-            <h3>Bring any model</h3>
+            <h3>Local and cloud, one team</h3>
             <p class="wedge-pitch">Cheapest capable model per task.</p>
             <p>
               Mix Claude, Codex, and Cursor CLI subscriptions, local models on
-              Ollama, and Anthropic / OpenAI / Google APIs in one team. The PM
-              picks the smallest model that can do each task and escalates to a
-              stronger one only when it has to.
+              Ollama, and Anthropic / OpenAI / Google APIs in a single team. The
+              PM picks the smallest model that can do each task and escalates to
+              a stronger one only when it has to - and learns which models handle
+              which work well.
             </p>
           </article>
 
           <article class="wedge-card">
             <h3>Rooms, not chat windows</h3>
-            <p class="wedge-pitch">Configurable, inspectable, local.</p>
+            <p class="wedge-pitch">Configurable, inspectable, private.</p>
             <p>
               Every agent works inside a room you configure - which models, what
               each one is allowed to see, how the work flows. Nothing leaves your
-              machine unless you route it to a model that does.
+              machine unless you route it to a model that does, and every context
+              hand-off is auditable.
             </p>
           </article>
         </div>
@@ -128,6 +131,48 @@
         </p>
       </section>
 
+      <section id="more" class="wedges">
+        <h2>More of what Errorta does.</h2>
+        <div class="wedge-grid">
+          <article class="wedge-card">
+            <h3>Knowledge &amp; grounding</h3>
+            <p>
+              Build a corpus from a plain-markdown brief, drag in your own
+              documents, or point it at a folder to watch. Your agents and Council
+              answer from that corpus with citations, a judge's verdict on whether
+              the answer holds up, and corrections that carry forward.
+            </p>
+          </article>
+
+          <article class="wedge-card">
+            <h3>Choose where it runs</h3>
+            <p>
+              Keep everything on your laptop, run models on your own machine over
+              SSH, or reach for the cloud. You decide where your data and compute
+              live - Errorta is local-capable, not locked to any one of them.
+            </p>
+          </article>
+
+          <article class="wedge-card">
+            <h3>Carry it in your pocket</h3>
+            <p>
+              An iOS companion pairs with your desktop over your own network, so
+              you can follow live runs, approve steps, and steer the team from
+              your phone while the work happens at home.
+            </p>
+          </article>
+
+          <article class="wedge-card">
+            <h3>A local AI backend</h3>
+            <p>
+              Other apps on your machine can call Errorta as their AI backend
+              through a consent-gated local service API - your models, your data,
+              behind one door you control.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section id="notify" class="signup">
         <h2>Alpha is dropping soon.</h2>
         <p class="downloads-note">
@@ -166,7 +211,8 @@
 
     <footer>
       <p>
-        Errorta is free and runs on your machine. Built on the open-source
+        Errorta is free and runs from your desktop - with local models, cloud
+        models, or both. Built on the open-source
         <a href="https://github.com/wiggins-j/aiar" class="aiar-link">
           <img src="aiar-logo.png" alt="" class="aiar-logo-inline" />AIAR
         </a>
