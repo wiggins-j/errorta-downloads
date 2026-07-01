@@ -94,6 +94,24 @@ a:focus-visible,
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
 }
+/* Cloud app-icon badge (the actual Errorta app icon, cropped to the cloud).
+ * Sized smaller than the old wordmark, rounded + shadowed so the dark backdrop
+ * reads as an app-icon tile against the light hero. */
+.hero-logo-cloud {
+  width: auto;
+  max-width: 200px;
+  margin: 0 auto 1rem;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+.wordmark {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+  color: var(--fg);
+}
 .hero .tagline {
   font-size: 1.3rem;
   margin: 0 0 0.5rem;
