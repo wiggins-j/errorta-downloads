@@ -1,5 +1,10 @@
 # Errorta Downloads
 
+> **Generated — do not edit this repository directly.** These files are published
+> from an upstream source by a sync script; any edit made here is overwritten on
+> the next publish. To change the site, edit the upstream source and re-run the
+> sync.
+
 This repository hosts the public landing page for Errorta at
 <https://errorta.app> (served by GitHub Pages from `main`).
 
