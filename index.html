@@ -3,183 +3,263 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Errorta - the AI harness that ships software, local and cloud</title>
+    <title>Errorta — an AI software team you run and govern on your own machine</title>
     <meta
       name="description"
-      content="Errorta is a desktop AI harness that combines local and cloud models into one team. A PM agent assigns the cheapest capable model to each task to plan, build, review, and test software. Deliberate with the Council, ground answers on your own corpus with AIAR, and choose where your data and compute live - your laptop, your server, or the cloud."
+      content="Errorta assembles an AI software team on your desktop. A PM agent assigns each task to a capable model, drives it through planning, code, review, and real test runs, and pauses for your approval at the gates you set. Deliberate with the Council, ground answers on your own corpus with AIAR, and choose where your data and compute run — your laptop, your server, or the cloud."
     />
     <link rel="icon" type="image/png" href="errorta-cloud.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="hero">
-      <div class="hero-inner">
-        <img
-          src="errorta-cloud.png"
-          alt=""
-          class="hero-logo hero-logo-cloud"
-          width="368"
-          height="252"
-        />
-        <h1 class="wordmark">Errorta</h1>
-        <p class="tagline">
-          Choose the models. Choose the team. Choose the goal.
-        </p>
-        <p class="sub">
-          Errorta combines local models and cloud models into one team. A PM
-          agent leads coding agents - CLI subscriptions, local models on Ollama,
-          and provider APIs - through rooms on your desktop to plan, build,
-          review, and test. Built in tandem with the open-source
-          <a href="https://github.com/wiggins-j/aiar" class="aiar-link">
-            <img src="aiar-logo.png" alt="" class="aiar-logo-inline" />AIAR
-          </a>
-          framework for grounded answers.
-        </p>
-
-        <div class="cta-row">
-          <a class="cta primary" href="#notify">Join the Waitlist</a>
-          <a class="cta secondary" href="#harness">How it works</a>
+      <div class="hero-grid">
+        <div class="hero-lead">
+          <p class="eyebrow">
+            <span class="state alpha">Alpha</span>
+            Local-capable · built on AIAR
+          </p>
+          <img
+            src="errorta-cloud.png"
+            alt="Errorta"
+            class="hero-mark"
+            width="120"
+            height="82"
+          />
+          <h1 class="wordmark">Errorta</h1>
+          <p class="tagline">Choose the models. Choose the team. Choose the goal.</p>
+          <p class="lead-outcome">
+            Assemble an AI software team, hand it a goal and a repository, and watch
+            it move from plan to reviewed pull request — with a human gate wherever
+            you want one.
+          </p>
+          <div class="cta-row">
+            <a class="cta primary" href="#notify">Join the waitlist</a>
+            <a class="cta-link" href="#run">See how a run works →</a>
+          </div>
+          <p class="aiar-line">
+            Grounded on your own data with the open-source
+            <a href="https://github.com/wiggins-j/aiar" class="aiar-link">
+              <img src="aiar-logo.png" alt="" class="aiar-logo-inline" />AIAR</a>
+            framework.
+          </p>
         </div>
-        <p class="hero-status">
-          <span class="wedge-status soon">In development</span>
-          Alpha dropping soon.
-        </p>
+
+        <aside class="hero-run" aria-label="A run at a glance">
+          <p class="run-kicker">A run at a glance</p>
+          <ol class="run-steps">
+            <li>
+              <strong>Pick the team.</strong> Assign each role to a model — a local
+              model on Ollama, a Claude, Codex, or Cursor CLI subscription, or a
+              provider API — and set what each one is allowed to see.
+            </li>
+            <li>
+              <strong>Set the goal.</strong> Not just one instruction — hand it a
+              whole outcome ("build an X that does A, B, and C"). The PM agent
+              breaks it into a task backlog and runs it.
+            </li>
+            <li>
+              <strong>You decide how models are chosen.</strong> Pin a model to a
+              role, allow a family, or give the PM a shortlist and let it pick the
+              cheapest capable model per task.
+            </li>
+            <li>
+              <strong>Your gates hold.</strong> The run pauses where you asked —
+              comment on the plan or approve a stage — or runs start to finish when
+              you turn gates off.
+            </li>
+            <li>
+              <strong>Review before merge.</strong> Work lands as branches and pull
+              requests with real test runs. Nothing touches your tree until you
+              review the diff and accept.
+            </li>
+          </ol>
+        </aside>
       </div>
+      <p class="hero-also">
+        Coding is one mode. Errorta also convenes a
+        <a href="#council">Council</a> of models for hard questions, and a
+        <a href="#knowledge">Judge</a> that grounds answers in your own data.
+      </p>
     </header>
 
     <main>
-      <section id="harness" class="wedges">
-        <h2>One workspace. A whole software team.</h2>
-        <p class="downloads-note">
-          Give Errorta a goal. A PM agent breaks it into tasks, assigns each one
-          to a developer, reviewer, or tester, and drives the work through
-          branches, pull requests, review, and real test runs - the way a small
-          engineering team actually ships.
+      <section id="run" class="run-ledger">
+        <h2>One goal in. Reviewed, tested code out.</h2>
+        <p class="section-lead">
+          Every run keeps a readable account of what the team decided, what it
+          changed, what it tested, and what still needs you.
         </p>
 
-        <div class="wedge-grid">
-          <article class="wedge-card">
-            <h3>PM-guided teams</h3>
-            <p class="wedge-pitch">Plan, build, review, test.</p>
-            <p>
-              A project manager agent decomposes your goal into a task backlog,
-              assigns each task to the right role, re-plans as work lands or
-              stalls, and holds the merge gate. You watch it work and steer at
-              any point.
-            </p>
-          </article>
+        <dl class="ledger">
+          <div class="ledger-row">
+            <dt>Goal &amp; backlog</dt>
+            <dd>
+              You give a plain-language goal. The PM agent decomposes it into tasks,
+              assigns each to a role, and re-plans as work lands or stalls.
+            </dd>
+          </div>
+          <div class="ledger-row">
+            <dt>Model routing</dt>
+            <dd>
+              Each task goes to the cheapest capable model you allow. The PM
+              escalates to a stronger model only when a task needs it, and learns
+              which models handle which kind of work, so assignments improve over
+              time.
+            </dd>
+          </div>
+          <div class="ledger-row">
+            <dt>Context policy</dt>
+            <dd>
+              Every member works inside a room where you set what it can see. Each
+              context hand-off is auditable down to the byte, so a model only ever
+              receives what its policy allows.
+            </dd>
+          </div>
+          <div class="ledger-row">
+            <dt>Governance gate</dt>
+            <dd>
+              The run stops where you want it — review the plan, approve a stage —
+              or let the team run start to finish. Governance is light, strict, or
+              off.
+            </dd>
+          </div>
+          <div class="ledger-row">
+            <dt>Delivery</dt>
+            <dd>
+              Branches, pull requests, and real test runs. The diff is yours to
+              review; nothing is written to your working tree until you accept it.
+            </dd>
+          </div>
+        </dl>
 
-          <article class="wedge-card">
-            <h3>Local and cloud, one team</h3>
-            <p class="wedge-pitch">Cheapest capable model per task.</p>
-            <p>
-              Mix Claude, Codex, and Cursor CLI subscriptions, local models on
-              Ollama, and Anthropic / OpenAI / Google APIs in a single team. The
-              PM picks the smallest model that can do each task and escalates to
-              a stronger one only when it has to - and learns which models handle
-              which work well.
-            </p>
-          </article>
-
-          <article class="wedge-card">
-            <h3>Rooms, not chat windows</h3>
-            <p class="wedge-pitch">Configurable, inspectable, private.</p>
-            <p>
-              Every agent works inside a room you configure - which models, what
-              each one is allowed to see, how the work flows. Nothing leaves your
-              machine unless you route it to a model that does, and every context
-              hand-off is auditable.
-            </p>
-          </article>
-        </div>
-
-        <p class="families-label">Plug in the models you already have:</p>
-        <ul class="family-chips" aria-label="Supported model families">
-          <li>Claude CLI</li>
-          <li>Codex CLI</li>
-          <li>Cursor CLI</li>
-          <li>Ollama - Qwen &middot; Gemma &middot; Mistral</li>
-          <li>Anthropic API</li>
-          <li>OpenAI API</li>
-          <li>Google API</li>
-        </ul>
+        <figure class="shot shot--reserved">
+          <div class="shot-slot">Coding Team — a live build</div>
+          <figcaption>A product screenshot lands here with the alpha build.</figcaption>
+        </figure>
       </section>
 
-      <section id="council" class="notes">
-        <h2>The Council: many models, one answer.</h2>
+      <section id="different" class="prose">
+        <h2>How Errorta is different</h2>
         <p>
-          Not every question is a coding task. Convene a Council - several models
-          deliberating in a shared room across topologies you choose (parallel
-          answers, round-robin, debate, moderator-led, blind review). Each member
-          sees only what its policy allows, a finalizer or judge resolves the
-          room, and every context hand-off is inspectable down to the byte. It is
-          a second opinion engine that runs entirely on your terms.
+          A single coding agent — Claude Code, Cursor, Codex — takes a goal, works,
+          and then stops. You re-prompt it for the next step, tell it to write
+          tests, run them yourself, and keep its context from filling up with
+          noise. You drive; it types.
+        </p>
+        <p>
+          Errorta wraps those same agents in a harness. You give a high-level goal
+          and the PM runs the whole loop: it breaks the work down, assigns each
+          task to a fresh agent with just enough context to succeed, has the dev
+          build, the tester run your real tests, and the reviewer check the diff —
+          merging and re-planning until the goal is met, pausing only at the gates
+          you set. Same models, with a team and a manager around them.
+        </p>
+        <p>
+          You set the direction; the team does the driving. A high-level goal in,
+          reviewed and tested code out — and nothing lands in your codebase until
+          you accept it.
         </p>
       </section>
 
-      <section id="aiar" class="notes">
-        <h2>Built on AIAR - grounded, and honest about it.</h2>
+      <section id="team" class="roster">
+        <h2>One team, the models you already have <span class="state alpha">Alpha</span></h2>
+        <p class="section-lead">
+          A single run can mix subscriptions, local models, and provider APIs. A
+          concrete team might read:
+        </p>
+        <dl class="roster-list">
+          <div class="roster-row">
+            <dt>PM</dt>
+            <dd><code>Claude CLI</code> — plans, assigns, holds the merge gate</dd>
+          </div>
+          <div class="roster-row">
+            <dt>Dev</dt>
+            <dd><code>Codex CLI</code> — writes the code for each task</dd>
+          </div>
+          <div class="roster-row">
+            <dt>Tester</dt>
+            <dd><code>Ollama · Qwen</code> — runs your real test commands; the verdict is the exit code</dd>
+          </div>
+          <div class="roster-row">
+            <dt>Reviewer</dt>
+            <dd><code>Cursor CLI</code> — reviews the diff before merge</dd>
+          </div>
+        </dl>
+        <p class="roster-note">
+          Also connects: Anthropic, OpenAI, and Google APIs, and any Ollama model
+          such as Gemma or Mistral.
+        </p>
+      </section>
+
+      <section id="council" class="prose">
+        <h2>The Council <span class="state alpha">Alpha</span></h2>
+        <p>
+          Not every question is a coding task. Convene a Council — several models
+          deliberating in a shared room across a topology you choose, such as
+          parallel answers, round-robin, debate, or blind review. Each member sees
+          only what its policy allows, a finalizer or judge resolves the room, and
+          every context hand-off is inspectable down to the byte. It is a
+          second-opinion engine that runs on your terms.
+        </p>
+      </section>
+
+      <section id="knowledge" class="prose">
+        <h2>Grounded, and honest about it <span class="state alpha">Alpha</span></h2>
         <p>
           Errorta is built in tandem with
           <a href="https://github.com/wiggins-j/aiar" class="aiar-link">
             <img src="aiar-logo.png" alt="" class="aiar-logo-inline" />AIAR</a>,
-          the open-source local-RAG framework that provides retrieval,
-          LLM-as-judge evaluation, and a grounding / correction loop. Point your
-          agents and Council at your own corpus and they answer from your data -
-          with citations, a structured verdict on whether the answer holds up,
-          and corrections that carry forward. Local AI that admits when it is
-          wrong and remembers what you fixed.
+          the open-source local-RAG framework that provides retrieval, LLM-as-judge
+          evaluation, and a grounding and correction loop. Build a corpus from a
+          plain-markdown brief, drag in your own documents, or point Errorta at a
+          folder to watch. Your agents and the Council answer from that corpus with
+          citations and a structured verdict on whether the answer holds up — and
+          when you accept a correction, it carries into later runs. Local AI that
+          admits when it is wrong and remembers what you fixed.
         </p>
       </section>
 
-      <section id="more" class="wedges">
-        <h2>More of what Errorta does.</h2>
-        <div class="wedge-grid">
-          <article class="wedge-card">
-            <h3>Knowledge &amp; grounding</h3>
-            <p>
-              Build a corpus from a plain-markdown brief, drag in your own
-              documents, or point it at a folder to watch. Your agents and Council
-              answer from that corpus with citations, a judge's verdict on whether
-              the answer holds up, and corrections that carry forward.
-            </p>
-          </article>
-
-          <article class="wedge-card">
-            <h3>Choose where it runs</h3>
-            <p>
-              Keep everything on your laptop, run models on your own machine over
-              SSH, or reach for the cloud. You decide where your data and compute
-              live - Errorta is local-capable, not locked to any one of them.
-            </p>
-          </article>
-
-          <article class="wedge-card">
-            <h3>Carry it in your pocket</h3>
-            <p>
-              An iOS companion pairs with your desktop over your own network, so
-              you can follow live runs, approve steps, and steer the team from
-              your phone while the work happens at home.
-            </p>
-          </article>
-
-          <article class="wedge-card">
-            <h3>A local AI backend</h3>
-            <p>
-              Other apps on your machine can call Errorta as their AI backend
-              through a consent-gated local service API - your models, your data,
-              behind one door you control.
-            </p>
-          </article>
-        </div>
+      <section id="runtime" class="prose">
+        <h2>Choose where the work runs</h2>
+        <dl class="ledger">
+          <div class="ledger-row">
+            <dt>On your laptop <span class="state alpha">Alpha</span></dt>
+            <dd>Local models on Ollama; nothing leaves the machine.</dd>
+          </div>
+          <div class="ledger-row">
+            <dt>Your own server over SSH <span class="state alpha">Alpha</span></dt>
+            <dd>Run models on a machine you control; the data location stays visible.</dd>
+          </div>
+          <div class="ledger-row">
+            <dt>Cloud providers <span class="state alpha">Alpha</span></dt>
+            <dd>
+              Route tasks to Claude, Codex, or Cursor subscriptions and Anthropic /
+              OpenAI / Google APIs when you choose to.
+            </dd>
+          </div>
+          <div class="ledger-row">
+            <dt>iOS companion <span class="state later">Later</span></dt>
+            <dd>Follow and steer live runs from your phone. Built; landing after the alpha.</dd>
+          </div>
+          <div class="ledger-row">
+            <dt>Local service API <span class="state planned">Planned</span></dt>
+            <dd>Let other apps on your machine call Errorta as their backend.</dd>
+          </div>
+        </dl>
       </section>
 
       <section id="notify" class="signup">
-        <h2>Alpha is dropping soon.</h2>
-        <p class="downloads-note">
-          Errorta is in active development. There is no public installer yet -
-          leave your email to be notified when the alpha lands and to join the
-          testers list.
+        <h2>Alpha is dropping soon</h2>
+        <p class="section-lead">
+          Errorta is in active development. There is no public installer yet — leave
+          your email to be notified when the alpha lands. Testers will exercise real
+          coding runs, model combinations, and the recovery paths when a run goes
+          sideways.
+        </p>
+        <p class="platform-note">
+          The alpha runs on <strong>macOS</strong> only.
+          <span class="state later">Windows</span> is coming soon.
         </p>
 
         <form
@@ -211,51 +291,34 @@
     </main>
 
     <footer>
-      <p>
-        Errorta is free and runs from your desktop - with local models, cloud
-        models, or both. Built on the open-source
+      <p class="footer-line">
+        Errorta runs from your desktop using local models, cloud models like Claude
+        and Codex, your own server, or a combination.
+      </p>
+      <p class="footer-line">
+        Built on the open-source
         <a href="https://github.com/wiggins-j/aiar" class="aiar-link">
-          <img src="aiar-logo.png" alt="" class="aiar-logo-inline" />AIAR
-        </a>
-        framework (Apache-2.0). Questions:
-        <a href="mailto:help@errorta.app">help@errorta.app</a>.
+          <img src="aiar-logo.png" alt="" class="aiar-logo-inline" />AIAR</a>
+        framework (Apache-2.0) for grounded answers.
+      </p>
+      <p class="footer-line">
+        Questions: <a href="mailto:help@errorta.app">help@errorta.app</a>
       </p>
     </footer>
 
     <script>
-      // Zero-backend signup: GitHub Pages is static, so there is no server to
-      // POST to. Until a hosted form endpoint (Formspree / Tally / etc.) is
-      // wired in, capture interest by opening the visitor's mail client with a
-      // pre-filled message to the canonical inbox. Their typed address rides in
-      // the body so it is captured even if their client sends from elsewhere.
-      //
-      // TO WIRE A REAL FORM LATER: set FORM_ENDPOINT to your Formspree/Tally URL
-      // and this handler will POST to it (fetch) instead of using mailto.
-      var FORM_ENDPOINT = ""; // e.g. "https://formspree.io/f/xxxxxxx"
+      // Zero-backend signup: GitHub Pages is static, so there is no server to POST
+      // to, and a third-party form service (Formspree/Tally) would break the
+      // tracker-free, no-third-party-host promise. So capture interest by opening
+      // the visitor's mail client with a pre-filled message to the canonical inbox.
+      // Their typed address rides in the body so it is captured even if their
+      // client sends from elsewhere. (F130: mailto is the accepted alpha mechanism.)
       var form = document.getElementById("notify-form");
       var hint = document.getElementById("notify-hint");
       if (form) {
         form.addEventListener("submit", function (event) {
           var email = (document.getElementById("notify-email") || {}).value || "";
           if (!email) return; // let native validation handle it
-          if (FORM_ENDPOINT) {
-            event.preventDefault();
-            fetch(FORM_ENDPOINT, {
-              method: "POST",
-              headers: { "Content-Type": "application/json", Accept: "application/json" },
-              body: JSON.stringify({ email: email, list: "alpha+testers" }),
-            })
-              .then(function () {
-                form.reset();
-                hint.textContent = "Thanks - you are on the list.";
-              })
-              .catch(function () {
-                hint.textContent =
-                  "Something went wrong. Email help@errorta.app to be added.";
-              });
-            return;
-          }
-          // mailto fallback (no backend configured).
           event.preventDefault();
           var subject = "Errorta alpha - notify me + testers list";
           var body =
@@ -267,7 +330,7 @@
             "&body=" +
             encodeURIComponent(body);
           hint.textContent =
-            "Opening your email app - send the message to finish signing up.";
+            "Opening your email app — send the message to finish signing up.";
         });
       }
     </script>
