@@ -12,7 +12,7 @@
     <!-- Cache-bust: styles.css is a stable filename served with a long
          max-age, so returning visitors keep an old copy after a redesign
          until it expires. Bump ?v= on every styles.css change. -->
-    <link rel="stylesheet" href="styles.css?v=20260702" />
+    <link rel="stylesheet" href="styles.css?v=20260702b" />
   </head>
   <body>
     <header class="hero">
@@ -136,9 +136,20 @@
           </div>
         </dl>
 
-        <figure class="shot shot--reserved">
-          <div class="shot-slot">Coding Team — a live build</div>
-          <figcaption>A product screenshot lands here with the alpha build.</figcaption>
+        <figure class="shot">
+          <img
+            src="coding-team-board.png"
+            alt="Errorta Coding Team task board with To do, Doing, Blocked, and Done columns. Task cards are tagged DEV or REVIEWER and carry PR statuses such as 'PR open', 'changes requested', and 'superseded'."
+            class="shot-img"
+            width="2000"
+            height="699"
+            loading="lazy"
+          />
+          <figcaption>
+            A live run's task board — the PM splits the goal into tasks and the
+            dev and reviewer agents drive each one to Done, every task shipped as
+            its own reviewed pull request.
+          </figcaption>
         </figure>
       </section>
 
