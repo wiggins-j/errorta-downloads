@@ -9,7 +9,10 @@
       content="Errorta assembles an AI software team on your desktop. A PM agent assigns each task to a capable model, drives it through planning, code, review, and real test runs, and pauses for your approval at the gates you set. Deliberate with the Council, ground answers on your own corpus with AIAR, and choose where your data and compute run — your laptop, your server, or the cloud."
     />
     <link rel="icon" type="image/png" href="errorta-cloud.png" />
-    <link rel="stylesheet" href="styles.css" />
+    <!-- Cache-bust: styles.css is a stable filename served with a long
+         max-age, so returning visitors keep an old copy after a redesign
+         until it expires. Bump ?v= on every styles.css change. -->
+    <link rel="stylesheet" href="styles.css?v=20260702" />
   </head>
   <body>
     <header class="hero">

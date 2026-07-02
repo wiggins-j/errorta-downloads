@@ -29,6 +29,13 @@
   --accent: #6f7df2;
   --accent-deep: #4f5fd9;
   --accent-soft: rgba(111, 125, 242, 0.12);
+  /* Filled brand buttons carry white text, so their background must clear
+   * AA 4.5:1 against white. Brand purple --accent (#6f7df2) is only 3.56:1;
+   * --accent-button (== the --accent-deep shade) is 5.29:1 with white AND
+   * still 3.58:1 against the dark page, so the button keeps its boundary.
+   * Same value in light + dark (no override) so the two surfaces cannot drift. */
+  --accent-button: #4f5fd9;
+  --on-accent: #ffffff;
   --surface-base: #ffffff;
   --surface-raised: #f5f6fb;
   --text: #16181f;
@@ -173,11 +180,11 @@ a:focus-visible,
   transition: transform 0.1s ease, background 0.1s ease;
 }
 .cta.primary {
-  background: var(--accent);
-  color: #fff;
+  background: var(--accent-button);
+  color: var(--on-accent);
 }
 .cta.primary:hover {
-  background: var(--accent-deep);
+  background: color-mix(in srgb, var(--accent-button) 85%, #000);
   text-decoration: none;
   transform: translateY(-1px);
 }
