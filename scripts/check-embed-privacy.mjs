@@ -6,21 +6,23 @@
  *   YouTube / Google host. The first such request must come only AFTER the
  *   user clicks a .yt-facade poster.
  *
- * Serves the repo root over loopback and drives it with Playwright:
- *   1. load the page, assert NO request matches the blocked-host pattern;
- *   2. click the facade; if a real video id is wired (not the placeholder),
- *      assert a request now appears.
+ * Serves the repo root over loopback and drives it with Playwright twice:
+ *   1. load the committed flag-off page and assert the facade stays hidden;
+ *   2. load a test-only flag-on response, assert no blocked request on load,
+ *      click the facade, then assert the first blocked request appears.
  *
  * Playwright is optional. If it isn't installed this script SKIPS (exit 0) and
  * prints the manual steps. Run from the repo root: node scripts/check-embed-privacy.mjs
  */
 import http from "node:http";
 import { readFile } from "node:fs/promises";
-import { extname, join, normalize } from "node:path";
+import { extname, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const ROOT = normalize(join(fileURLToPath(import.meta.url), "..", ".."));
+const ROOT = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const BLOCKED = /youtube\.com|youtube-nocookie\.com|ytimg\.com|googlevideo\.com|gstatic\.com|googleapis\.com|google\.com|doubleclick/i;
+const TEST_VIDEO_ID = "dQw4w9WgXcQ";
+const VIDEO_FLAG = 'var VIDEO_ID = "";';
 
 const MIME = {
   ".html": "text/html",
@@ -39,14 +41,22 @@ const MIME = {
 function serve() {
   const server = http.createServer(async (req, res) => {
     try {
-      let p = decodeURIComponent(new URL(req.url, "http://x").pathname);
+      const requestUrl = new URL(req.url, "http://x");
+      let p = decodeURIComponent(requestUrl.pathname);
       if (p === "/") p = "/index.html";
-      const file = normalize(join(ROOT, p));
-      if (!file.startsWith(ROOT)) {
+      const file = resolve(ROOT, `.${p}`);
+      if (file !== ROOT && !file.startsWith(`${ROOT}${sep}`)) {
         res.writeHead(403).end();
         return;
       }
-      const body = await readFile(file);
+      let body = await readFile(file);
+      if (file === resolve(ROOT, "index.html") && requestUrl.searchParams.has("video-test")) {
+        const html = body.toString("utf8");
+        if (!html.includes(VIDEO_FLAG)) {
+          throw new Error("VIDEO_ID feature flag marker not found");
+        }
+        body = html.replace(VIDEO_FLAG, `var VIDEO_ID = "${TEST_VIDEO_ID}";`);
+      }
       res.writeHead(200, {
         "content-type": MIME[extname(file)] || "application/octet-stream",
       });
@@ -81,40 +91,60 @@ async function main() {
   const url = `http://127.0.0.1:${port}/`;
 
   const browser = await chromium.launch();
-  const page = await browser.newPage();
-  const hits = [];
-  page.on("request", (r) => {
-    if (BLOCKED.test(r.url())) hits.push(r.url());
-  });
-
   let failed = false;
   try {
-    await page.goto(url, { waitUntil: "networkidle" });
-    await page.waitForTimeout(500);
+    const offPage = await browser.newPage();
+    const offHits = [];
+    offPage.on("request", (r) => {
+      if (BLOCKED.test(r.url())) offHits.push(r.url());
+    });
+    await offPage.goto(url, { waitUntil: "networkidle" });
+    await offPage.waitForTimeout(500);
 
-    if (hits.length > 0) {
+    if (offHits.length > 0) {
       failed = true;
-      console.error("FAIL: YouTube/Google request(s) BEFORE any click:");
-      hits.forEach((h) => console.error("  - " + h));
-    } else {
-      console.log("PASS: no YouTube/Google contact on load (" + url + ").");
+      console.error("FAIL: flag-off page contacted YouTube/Google:");
+      offHits.forEach((h) => console.error("  - " + h));
     }
+    const offFacade = offPage.locator(".yt-facade");
+    const offFacadeCount = await offFacade.count();
+    if (offFacadeCount !== 1 || (await offFacade.isVisible())) {
+      failed = true;
+      console.error("FAIL: flag-off facade is missing or visible.");
+    } else if (offHits.length === 0) {
+      console.log("PASS: flag-off facade hidden with no YouTube/Google contact.");
+    }
+    await offPage.close();
 
-    const facade = page.locator(".yt-facade").first();
-    if ((await facade.count()) > 0 && (await facade.isVisible())) {
-      await facade.click();
-      await page.waitForTimeout(750);
-      if (hits.length > 0) {
-        console.log("PASS: iframe/request appeared only after click.");
+    const onPage = await browser.newPage();
+    const onHits = [];
+    onPage.on("request", (r) => {
+      if (BLOCKED.test(r.url())) onHits.push(r.url());
+    });
+    await onPage.goto(`${url}?video-test=1`, { waitUntil: "networkidle" });
+    await onPage.waitForTimeout(500);
+
+    if (onHits.length > 0) {
+      failed = true;
+      console.error("FAIL: flag-on page contacted YouTube/Google before click:");
+      onHits.forEach((h) => console.error("  - " + h));
+    }
+    const onFacade = onPage.locator(".yt-facade");
+    const onFacadeCount = await onFacade.count();
+    if (onFacadeCount !== 1 || !(await onFacade.isVisible())) {
+      failed = true;
+      console.error("FAIL: test-enabled facade is missing or hidden.");
+    } else {
+      await onFacade.click();
+      await onPage.waitForTimeout(750);
+      if (onHits.some((hit) => hit.includes(`/embed/${TEST_VIDEO_ID}`))) {
+        console.log("PASS: embed request appeared only after click.");
       } else {
         failed = true;
-        console.error("FAIL: clicking the facade produced no embed request.");
+        console.error("FAIL: clicking the facade produced no expected embed request.");
       }
-    } else {
-      console.log(
-        "NOTE: video flag off (facade hidden) — load invariant checked; click test skipped."
-      );
     }
+    await onPage.close();
   } finally {
     await browser.close();
     server.close();

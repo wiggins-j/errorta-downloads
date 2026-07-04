@@ -402,7 +402,11 @@
           );
           f.setAttribute("allowfullscreen", "");
           f.setAttribute("frameborder", "0");
+          f.setAttribute("referrerpolicy", "no-referrer");
           el.innerHTML = "";
+          el.removeAttribute("role");
+          el.removeAttribute("tabindex");
+          el.removeAttribute("aria-label");
           el.appendChild(f);
         }
 
