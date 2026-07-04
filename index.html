@@ -12,7 +12,7 @@
     <!-- Cache-bust: styles.css is a stable filename served with a long
          max-age, so returning visitors keep an old copy after a redesign
          until it expires. Bump ?v= on every styles.css change. -->
-    <link rel="stylesheet" href="styles.css?v=20260702b" />
+    <link rel="stylesheet" href="styles.css?v=20260704" />
   </head>
   <body>
     <header class="hero">
@@ -93,6 +93,22 @@
           Every run keeps a readable account of what the team decided, what it
           changed, what it tested, and what still needs you.
         </p>
+
+        <!-- Full run video (click-to-load). Hidden by default via the
+             VIDEO_ID feature flag in the script at the end of <body>; when a
+             video id is set there, this reveals and NO YouTube/Google request
+             fires until the poster is clicked. -->
+        <figure class="run-video" hidden>
+          <div
+            class="yt-facade"
+            data-title="Watch a full run"
+            style="background-image: url('coding-team-board.png')"
+          ></div>
+          <figcaption>
+            A full governed run, start to finish — plan, code, real test runs,
+            review, and the merge gate holding.
+          </figcaption>
+        </figure>
 
         <dl class="ledger">
           <div class="ledger-row">
@@ -347,6 +363,77 @@
             "Opening your email app — send the message to finish signing up.";
         });
       }
+    </script>
+
+    <!-- Video: click-to-load YouTube facade.
+         Privacy invariant: on load this page makes ZERO requests to any
+         YouTube/Google host. The <iframe> — and the only youtube-nocookie
+         request — is injected ONLY after the visitor clicks the facade poster.
+         Do NOT add a preconnect, a ytimg poster, or a raw/nocookie <iframe> at
+         load time, and do NOT move this to a CDN <script src>. -->
+    <script>
+      (function () {
+        "use strict";
+
+        // FEATURE FLAG — the video is OFF until a real id is set here.
+        // To turn the video on: paste the YouTube video id between the quotes
+        // (e.g. "dQw4w9WgXcQ"). Empty string keeps the video hidden.
+        var VIDEO_ID = "";
+        if (!VIDEO_ID) return;
+
+        var figure = document.querySelector(".run-video");
+        var el = document.querySelector(".yt-facade");
+        if (!figure || !el) return;
+        el.setAttribute("data-videoid", VIDEO_ID);
+        figure.hidden = false;
+
+        function activate() {
+          if (el.dataset.activated === "1") return;
+          el.dataset.activated = "1";
+          var f = document.createElement("iframe");
+          f.src =
+            "https://www.youtube-nocookie.com/embed/" +
+            encodeURIComponent(VIDEO_ID) +
+            "?autoplay=1&rel=0";
+          f.title = el.getAttribute("data-title") || "Video player";
+          f.setAttribute(
+            "allow",
+            "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
+          );
+          f.setAttribute("allowfullscreen", "");
+          f.setAttribute("frameborder", "0");
+          el.innerHTML = "";
+          el.appendChild(f);
+        }
+
+        el.setAttribute("role", "button");
+        el.setAttribute("tabindex", "0");
+        if (!el.getAttribute("aria-label")) {
+          el.setAttribute(
+            "aria-label",
+            el.getAttribute("data-title") || "Play video"
+          );
+        }
+        var play = document.createElement("span");
+        play.className = "yt-facade__play";
+        play.setAttribute("aria-hidden", "true");
+        el.appendChild(play);
+        var label = el.getAttribute("data-title");
+        if (label) {
+          var cap = document.createElement("span");
+          cap.className = "yt-facade__label";
+          cap.setAttribute("aria-hidden", "true");
+          cap.textContent = label;
+          el.appendChild(cap);
+        }
+        el.addEventListener("click", activate);
+        el.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+            e.preventDefault();
+            activate();
+          }
+        });
+      })();
     </script>
   </body>
 </html>
