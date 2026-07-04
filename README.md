@@ -53,6 +53,32 @@ with SHA-256 checksums in the release notes.
 The one asset published today is the welcome-corpus tarball used by
 first-time Errorta users - public onboarding copy, safe to download.
 
+## Video embed — privacy invariant
+
+The landing page has a click-to-load "Watch a full run" video in the run
+section. It is **off by default** behind a feature flag: set `VIDEO_ID` to the
+YouTube video id in the script at the end of `index.html` to turn it on (empty
+= hidden, the current state).
+
+When on, it is wired so that, **with the page loaded and untouched, the browser
+makes zero requests to any YouTube or Google host.** The `<iframe>` — and the
+only `youtube-nocookie.com` request — is injected **only after** the visitor
+clicks the video poster.
+
+This is a hard rule for a privacy-focused product. When changing the hero or the
+run section:
+
+- Do **not** use a raw `<iframe src="youtube.com/…">` or a raw
+  `youtube-nocookie.com` iframe at load time — both contact YouTube on load.
+- Do **not** add a `preconnect` to a YouTube/Google host, or default the facade
+  poster to `i.ytimg.com`.
+- Keep the facade script inline (or self-hosted); do not load it from a CDN.
+
+Verify after any change: load the page, open DevTools → Network, filter
+`youtube|ytimg|google`, and confirm the list is **empty** until you click the
+poster. `node scripts/check-embed-privacy.mjs` automates this when Playwright is
+installed (it skips cleanly otherwise).
+
 ## License
 
 The contents of this downloads repository are licensed under
