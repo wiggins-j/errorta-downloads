@@ -12,7 +12,7 @@
     <!-- Cache-bust: styles.css is a stable filename served with a long
          max-age, so returning visitors keep an old copy after a redesign
          until it expires. Bump ?v= on every styles.css change. -->
-    <link rel="stylesheet" href="styles.css?v=20260706" />
+    <link rel="stylesheet" href="styles.css?v=20260713" />
   </head>
   <body>
     <header class="hero">
@@ -38,6 +38,7 @@
           </p>
           <div class="cta-row">
             <a class="cta primary" href="https://github.com/wiggins-j/errorta_app" target="_blank" rel="noopener">View on GitHub</a>
+            <a class="cta-link" href="#cli">Run it from your terminal →</a>
             <a class="cta-link" href="#run">See how a run works →</a>
           </div>
           <p class="aiar-line">
@@ -440,6 +441,97 @@
         </p>
       </section>
 
+      <section id="cli" class="cli">
+        <h2>Run it from your terminal <span class="state alpha">Alpha</span></h2>
+        <p class="section-lead">
+          Prefer the keyboard? The same engine ships as a single self-contained
+          binary. From an empty shell to an autonomous run in a handful of
+          copy-paste commands — macOS Apple Silicon.
+        </p>
+
+        <div class="cli-toolbar">
+          <span class="cli-toolbar-note">Copy any step, or grab the whole sequence:</span>
+          <button type="button" class="copy-btn copy-all" data-copy-target="#cli-all">
+            Copy all steps
+          </button>
+        </div>
+
+        <ol class="cli-steps">
+          <li class="cli-step">
+            <div class="cli-step-head">
+              <span class="cli-step-label">1 · Install</span>
+              <button type="button" class="copy-btn">Copy</button>
+            </div>
+            <pre class="cli-block"><code>brew install errorta/tap/errorta</code></pre>
+          </li>
+
+          <li class="cli-step">
+            <div class="cli-step-head">
+              <span class="cli-step-label">2 · Connect a model</span>
+              <button type="button" class="copy-btn">Copy</button>
+            </div>
+            <pre class="cli-block"><code>errorta connect claudecode cli</code></pre>
+            <p class="cli-note">
+              A Claude subscription is shown — the key never leaves the vendor CLI.
+              Or use an API key: <code>errorta connect anthropic api</code>,
+              <code>openai api</code>, or a local <code>ollama</code>.
+            </p>
+          </li>
+
+          <li class="cli-step">
+            <div class="cli-step-head">
+              <span class="cli-step-label">3 · Create a project</span>
+              <button type="button" class="copy-btn">Copy</button>
+            </div>
+            <pre class="cli-block"><code>errorta new my-app --north-star "A CLI that renders Markdown tables"</code></pre>
+            <p class="cli-note">
+              The project folder is created for you under
+              <code>~/Errorta&nbsp;Projects/</code>. Want your shell to
+              <code>cd</code> into it automatically? Add the hook once:
+              <code>echo 'eval "$(errorta shell-init zsh)"' &gt;&gt; ~/.zshrc</code>.
+            </p>
+          </li>
+
+          <li class="cli-step">
+            <div class="cli-step-head">
+              <span class="cli-step-label">4 · Assemble a default team</span>
+              <button type="button" class="copy-btn">Copy</button>
+            </div>
+            <pre class="cli-block"><code>errorta team create --codingteam --default
+errorta team apply --yes</code></pre>
+            <p class="cli-note">
+              <code>--default</code> auto-assembles a team — 1 PM, 3 devs, a
+              reviewer, and a tester — from the providers you connected. Build
+              it by hand instead with <code>errorta team add --dev &lt;model&gt;</code>.
+            </p>
+          </li>
+
+          <li class="cli-step">
+            <div class="cli-step-head">
+              <span class="cli-step-label">5 · Run it autonomously</span>
+              <button type="button" class="copy-btn">Copy</button>
+            </div>
+            <pre class="cli-block"><code>errorta setup --confirm --yes
+errorta run --autonomous --yes</code></pre>
+          </li>
+        </ol>
+
+        <p class="cli-docs">
+          Full command reference, the verbosity model, and scripting with
+          <code>--json</code>:
+          <a href="https://github.com/wiggins-j/errorta_app/blob/main/docs/CLI.md" target="_blank" rel="noopener">docs/CLI.md</a>.
+        </p>
+
+        <!-- The whole sequence, hidden — the "Copy all steps" button copies this. -->
+        <pre id="cli-all" class="visually-hidden" aria-hidden="true">brew install errorta/tap/errorta
+errorta connect claudecode cli
+errorta new my-app --north-star "A CLI that renders Markdown tables"
+errorta team create --codingteam --default
+errorta team apply --yes
+errorta setup --confirm --yes
+errorta run --autonomous --yes</pre>
+      </section>
+
       <section id="council" class="prose">
         <h2>The Council <span class="state alpha">Alpha</span></h2>
         <p>
@@ -748,6 +840,78 @@
 
         show(0);
         start();
+      })();
+    </script>
+
+    <!-- Copy-to-clipboard for the terminal quickstart. Self-contained, no
+         third-party host. Each .copy-btn copies its step's command block; a
+         button with data-copy-target copies the element it points at. -->
+    <script>
+      (function () {
+        "use strict";
+        var buttons = Array.prototype.slice.call(
+          document.querySelectorAll(".copy-btn")
+        );
+        if (!buttons.length) return;
+
+        function sourceFor(btn) {
+          var sel = btn.getAttribute("data-copy-target");
+          if (sel) return document.querySelector(sel);
+          var step = btn.closest(".cli-step");
+          return step ? step.querySelector("code") : null;
+        }
+
+        function flash(btn, ok) {
+          var original = btn.getAttribute("data-label") || btn.textContent;
+          btn.setAttribute("data-label", original);
+          btn.textContent = ok ? "Copied" : "Press ⌘C";
+          btn.classList.toggle("copied", ok);
+          window.setTimeout(function () {
+            btn.textContent = btn.getAttribute("data-label");
+            btn.classList.remove("copied");
+          }, 1600);
+        }
+
+        function legacyCopy(text, btn) {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "absolute";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = false;
+          try {
+            ok = document.execCommand("copy");
+          } catch (e) {
+            ok = false;
+          }
+          document.body.removeChild(ta);
+          flash(btn, ok);
+        }
+
+        buttons.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var src = sourceFor(btn);
+            if (!src) return;
+            var text = (src.textContent || "").replace(
+              / /g,
+              " "
+            );
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(text).then(
+                function () {
+                  flash(btn, true);
+                },
+                function () {
+                  legacyCopy(text, btn);
+                }
+              );
+            } else {
+              legacyCopy(text, btn);
+            }
+          });
+        });
       })();
     </script>
   </body>

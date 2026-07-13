@@ -719,3 +719,130 @@ footer {
     min-height: 0;
   }
 }
+
+/* ------------------------------------------------ Terminal quickstart (#cli) */
+/* Copy-paste command sequence. Same rails-and-rules language as the ledger:
+   a numbered list of steps, each a mono command block with a copy button. */
+.cli-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0 0 1.5rem;
+}
+.cli-toolbar-note {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.cli-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+}
+.cli-step {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--surface-raised);
+  padding: 1rem 1.15rem 1.15rem;
+}
+.cli-step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 0.6rem;
+}
+.cli-step-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+/* The command block itself — the only thing the copy button lifts. */
+.cli-block {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-base);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+.cli-block code {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre;
+  display: block;
+}
+
+.cli-note {
+  margin: 0.75rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.cli-note code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  padding: 0.05em 0.35em;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--text);
+  white-space: nowrap;
+}
+.cli-docs {
+  margin: 1.5rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+.cli-docs a {
+  font-weight: 600;
+}
+
+/* Copy button — quiet by default, accent on hover, green on success. */
+.copy-btn {
+  flex: 0 0 auto;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-base);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 0.12s ease, color 0.12s ease, background 0.12s ease;
+}
+.copy-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent-deep);
+}
+.copy-btn:focus-visible {
+  outline: 3px solid var(--accent-deep);
+  outline-offset: 2px;
+}
+.copy-btn.copied {
+  border-color: color-mix(in srgb, var(--ok) 45%, transparent);
+  color: var(--ok);
+}
+.copy-all {
+  padding: 0.5rem 1rem;
+}
+@media (prefers-color-scheme: dark) {
+  .copy-btn:hover {
+    color: var(--accent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .copy-btn {
+    transition: none;
+  }
+}
