@@ -894,7 +894,7 @@ errorta run --autonomous --yes</pre>
           btn.addEventListener("click", function () {
             var src = sourceFor(btn);
             if (!src) return;
-            var text = (src.innerText || src.textContent || "").replace(
+            var text = (src.textContent || "").replace(
               / /g,
               " "
             );
